@@ -1,6 +1,9 @@
 const app = require('express')()
 const graphqlHTTP = require('express-graphql')
 const schema = require('./schema/schema')
+const cors = require('cors')
+
+app.use(cors());
 
 // Database
 require('./database/database');
@@ -8,7 +11,7 @@ require('./database/database');
 
 app.use('/graphql', graphqlHTTP({
   schema,
-  graphiql:true
+  graphiql: true
 }))
 
 app.listen(4000, () => {
